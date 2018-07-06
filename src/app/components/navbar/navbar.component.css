@@ -1,0 +1,9 @@
+.navbar {
+  background-color: #fff;
+}
+
+@media only screen and (min-width: 768px) {
+  img {
+    content: url("../../../assets/sch_logo.png");
+  }
+}

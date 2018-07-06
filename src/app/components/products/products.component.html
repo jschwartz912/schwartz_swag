@@ -1,0 +1,79 @@
+<!-- <pre>Data Obtained is: {{ products | json }}</pre> -->
+<section class="container-fluid py-3">
+  <div class=" container search-wrapper ">
+    <div class="row ">
+      <div class="col-6 ">
+        <div class="mr-auto left-nav ">
+          <div class="dropdown nav-icon my-auto mr-3 ">
+            <a href="#" role="button " id="dropdownMenuLink " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="change-icon ">
+                <i class="fa fa-bars "></i>
+                <i class="fa fa-level-down "></i>
+              </span>
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink ">
+              <a class="dropdown-item py-4 cat-option" href="# " *ngFor="let category of categories " (click)="updateCategory(category) ">{{category}}</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-6 ">
+        <div class="ml-auto right-nav ">
+          <div class="input-holder ">
+            <input type="text " class="search-input " placeholder="Type to search " />
+            <button class="search-icon " (click)="searchToggle() ">
+              <span></span>
+            </button>
+          </div>
+          <div class="nav-icon my-auto ml-3 ">
+            <a href="# ">
+              <i class="fa fa-shopping-cart "></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="container-fluid py-5 bg">
+  <div class="container ">
+    <div class="row">
+      <div class="col-12 col-sm-4 col-md-3 mb-5 " *ngFor="let product of filteredProducts">
+        <a href="#" (click)="openModal(product)" data-toggle="modal" data-target="#largeModal" class="card ">
+          <img class="card-img-top " src="{{product.image}} ">
+          <div class="card-body ">
+            <h6>{{product.product_name}}</h6>
+            <i class="pt-2 ">{{product.price | currency:"USD":"symbol"}}</i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- large modal -->
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" *ngIf="selectedProduct">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Product Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="card">
+        <img class="card-img-top " src="{{selectedProduct.image}} ">
+        <div class="card-body">
+          <p class="font-weight-bold">{{selectedProduct.product_name}}</p>
+          <p class="pt-2">{{selectedProduct.description}}</p>
+          <p class="pt-2">Color: {{selectedProduct.color}}</p>
+          <p class="pt-2">Price: {{selectedProduct.price | currency:"USD":"symbol"}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
